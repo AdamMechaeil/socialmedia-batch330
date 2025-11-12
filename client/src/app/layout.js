@@ -1,6 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "bootstrap/dist/css/bootstrap.min.css";
-
+import "./globals.css";
+import { MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
+import { Toaster } from "@/components/ui/sonner";
+import { Authprovider } from "./Context/Authcontext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,7 +23,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <MantineProvider>
+          <Toaster position="top-center" />
+          <Authprovider>{children}</Authprovider>
+        </MantineProvider>
       </body>
     </html>
   );

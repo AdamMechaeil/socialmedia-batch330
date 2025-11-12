@@ -5,3 +5,6 @@
 /server/package-lock.json
 
 /client/.next
+/server/public
+
+/server/config/config.env
