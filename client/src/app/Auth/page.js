@@ -1,8 +1,12 @@
 "use client"
 
+import Main from "../Components/Auth/Main"
+
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <Main/>
+      </div>
   )
 }
 
