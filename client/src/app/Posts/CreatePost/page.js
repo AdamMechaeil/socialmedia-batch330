@@ -1,3 +1,4 @@
+"use client"
 import CreatePost from '@/app/Components/Posts/CreatePost'
 import React from 'react'
 

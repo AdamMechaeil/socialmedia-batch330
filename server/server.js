@@ -7,6 +7,7 @@ import postRouter from "./routes/post.js";
 import authRouter from "./routes/auth.js";
 import userRouter from "./routes/user.js";
 import { fileURLToPath } from "url";
+import morgan from "morgan";
 
 // Recreate __filename and __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -25,6 +26,7 @@ app.use(
   })
 );
 app.use(express.urlencoded({ extended: false }));
+app.use(morgan("dev"))
 app.use("/posts",postRouter);
 app.use("/auth",authRouter);
 app.use("/user",userRouter);

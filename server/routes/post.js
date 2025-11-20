@@ -15,11 +15,23 @@ import {
   updatePost,
 } from "../controllers/post.js";
 import { authenticator } from "../middlewares/authenticator.js";
+import multer from "multer";
 
 const postRouter = express.Router();
 
+// Configure Multer for file storage
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, "public/posts"); // Specify the directory to store uploaded files
+        },
+        filename: function (req, file, cb) {
+            cb(null, Date.now() + '-' + file.originalname); // Define the filename
+        }
+    });
+    const upload = multer({ storage: storage });
+
 postRouter.get("/getPosts", authenticator, getPosts);
-postRouter.post("/createPost", authenticator, createPosts);
+postRouter.post("/createPost", authenticator,upload.single("image"), createPosts);
 postRouter.put("/updatePost/:_id", authenticator, updatePost);
 postRouter.delete("/deletePost/:_id", authenticator, deletePost);
 postRouter.get("/getPostById/:_id", authenticator, getPostById);
