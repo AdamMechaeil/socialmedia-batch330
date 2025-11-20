@@ -30,8 +30,8 @@ export const createPosts = async (req, res) => {
     const { id } = req.user;
     const { title, image, caption, tags } = req.body;
     const blob = new Post({ title, image, caption, tags, creator: id });
-    const createdPost = await blob.save();
-    res.send({ createdPost, msg: "Created" });
+    await blob.save();
+    res.send({  msg: "Created" });
   } catch (error) {
     console.log(error);
   }
